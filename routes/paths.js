@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Task = require('../models/Task');
+const userController = require('../controller/user_controller');
 
 router.post("/list", async (req, res) => {
     var task = await Task.find({ userid: req.body.userid });
@@ -24,5 +25,7 @@ router.post("/delete", async (req, res) => {
     const response = { message: "Task deleted " + `id: ${req.body.id}` };
     res.json(response);
 });
+
+router.post("/register", userController.register);
 
 module.exports = router;
